@@ -36,3 +36,25 @@ on a.codcliente = b.codcliente
 order by codpedido asc,
 		 codcliente asc;
 
+-- 4 | Listar todos os clientes com seus respectivos pedidos.
+-- os clientes que não têm pedidos também devem ser apresentados
+
+select 
+	a.codcliente,
+    a.nome,
+    coalesce(b.codpedido,'sem pedido') as pedido
+from cliente as a
+left join pedido as b
+on a.codcliente = b.codcliente
+order by codpedido, codcliente;
+
+-- 5 | Clientes com prazo de entrega superior a 10 dias e que pertençam
+-- aos estados do Rio Grande do Sul ou Santa Catarina. 
+
+select 
+	b.nome,
+	timestampdiff(day,a.datapedido,a.prazoentrega)
+from pedido as a
+join cliente as b
+on a.codcliente = b.codcliente
+order by codpedido;
