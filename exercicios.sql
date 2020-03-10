@@ -61,3 +61,17 @@ where b.uf = 'RS' OR b.uf = 'SC'
 and datediff(a.prazoentrega,a.datapedido) > 10
 group by b.codcliente 
 order by b.codcliente;
+
+-- 6 | Mostrar os clientes e seus respectivos prazos de entrega,
+-- ordenando do maior para o menor.
+
+select
+	b.codcliente,
+	b.nome,
+	a.prazoentrega as prazo
+from pedido as a
+join cliente as b
+on a.codcliente = b.codcliente
+order by a.prazoentrega desc;
+
+
