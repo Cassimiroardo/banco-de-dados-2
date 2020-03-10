@@ -122,3 +122,16 @@ left join vendedor as c
 on b.codvendedor = c.codvendedor
 order by a.codcliente,
 		 c.codvendedor;
+
+-- 10 | Liste o nome do cliente e a quantidade de pedidos de cada cliente.
+
+select
+	a.codcliente,
+	a.nome,
+    count(b.codpedido) as total
+from cliente as a
+left join pedido as b
+on a.codcliente = b.codcliente
+group by a.codcliente
+order by total,codcliente;
+
