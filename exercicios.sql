@@ -75,3 +75,18 @@ on a.codcliente = b.codcliente
 order by a.prazoentrega desc;
 
 
+-- 7 | Apresentar os vendedores, em ordem alfabética, 
+-- que emitiram pedidos com prazos de entrega superiores a 15 dias
+-- e que tenham salários fixos iguais ou superiores a R$ 1.000,00
+
+select 
+	a.codvendedor,
+	a.nome
+from vendedor as a
+join pedido as b
+on a.codvendedor = b.codvendedor
+where datediff(b.prazoentrega,b.datapedido) > 15
+AND salariofixo >= 1000.00
+group by codvendedor
+order by nome asc;    
+
