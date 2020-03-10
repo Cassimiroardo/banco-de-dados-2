@@ -40,7 +40,7 @@ order by codpedido asc,
 -- os clientes que não têm pedidos também devem ser apresentados
 
 select 
-	a.codcliente,
+    a.codcliente,
     a.nome,
     coalesce(b.codpedido,'sem pedido') as pedido
 from cliente as a
