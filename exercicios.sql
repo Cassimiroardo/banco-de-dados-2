@@ -90,3 +90,19 @@ AND salariofixo >= 1000.00
 group by codvendedor
 order by nome asc;    
 
+-- 8 |  Os vendedores têm seu salário fixo acrescido de 20% da soma dos valores dos pedidos.
+-- Faça uma consulta que retorne o nome dos funcionários e o total de comissão, desses funcionários
+
+select
+	a.codvendedor,
+    sum(c.quantidade*d.valorunitario)*0.02 as comissão
+from vendedor as a
+join pedido as b
+on a.codvendedor = b.codvendedor
+right join itempedido as c
+on b.codpedido = c.codpedido
+right join produto as d
+on c.codproduto = d.codproduto
+group by a.codvendedor
+order by comissão asc;
+
