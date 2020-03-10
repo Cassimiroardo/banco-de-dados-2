@@ -135,3 +135,19 @@ on a.codcliente = b.codcliente
 group by a.codcliente
 order by total,codcliente;
 
+-- 11 | Liste o nome do cliente, o código do pedido e a quantidade total de produtos por pedido.
+
+select
+	a.codcliente,
+    a.nome as cliente,
+    b.codpedido,
+    coalesce(sum(c.quantidade),0) as total
+from cliente as a
+inner join pedido as b
+on a.codcliente = b.codcliente
+left join itempedido as c
+on b.codpedido = c.codpedido
+group by b.codpedido
+order by total, codpedido;
+
+
