@@ -52,9 +52,12 @@ order by codpedido, codcliente;
 -- aos estados do Rio Grande do Sul ou Santa Catarina. 
 
 select 
-	b.nome,
-	timestampdiff(day,a.datapedido,a.prazoentrega)
+	b.codcliente,
+	b.nome	
 from pedido as a
 join cliente as b
 on a.codcliente = b.codcliente
-order by codpedido;
+where b.uf = 'RS' OR b.uf = 'SC' 
+and datediff(a.prazoentrega,a.datapedido) > 10
+group by b.codcliente 
+order by b.codcliente;
