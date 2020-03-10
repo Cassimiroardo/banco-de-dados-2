@@ -106,3 +106,19 @@ on c.codproduto = d.codproduto
 group by a.codvendedor
 order by comissão asc;
 
+-- 9 | Os clientes e os respectivos vendedores que fizeram algum pedido 
+-- para esse cliente juntamente com a data do pedido.
+
+select
+	a.codcliente,
+    a.nome as cliente,
+    b.codvendedor,
+    c.nome as vendedor,
+    b.datapedido
+from cliente as a
+left join pedido as b
+on a.codcliente = b.codcliente
+left join vendedor as c
+on b.codvendedor = c.codvendedor
+order by a.codcliente,
+		 c.codvendedor;
