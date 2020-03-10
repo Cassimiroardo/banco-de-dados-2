@@ -22,7 +22,7 @@ from pedido as a
 left join itempedido as b
 on a.codpedido = b.codpedido
 group by codpedido
-order by codpedido, codproduto;
+order by codpedido;
 
 -- 3 | Ver os pedidos de cada cliente, listando nome do cliente e número do pedido.
 
